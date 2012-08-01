@@ -42,7 +42,7 @@ class Command(BaseCommand):
         proposed_indexes = {}
         index_sql = {}
         for app in get_apps():
-            all_indexes.append(u'\n'.join(sql_indexes(app, no_style()), connection).encode('utf-8'))
+            all_indexes.append(u'\n'.join(sql_indexes(app, no_style(), connection)).encode('utf-8'))
         #Sort out all the proposed indexes by table.
         for index in all_indexes:
             indice = index.split('\n')
