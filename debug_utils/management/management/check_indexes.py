@@ -4,6 +4,7 @@ from django.conf import settings
 from django.db.models.loading import get_apps
 from django.db import connection
 from django.core.management.sql import sql_indexes
+from django.db import connection
 
 import re
 from optparse import make_option
@@ -41,8 +42,7 @@ class Command(BaseCommand):
         proposed_indexes = {}
         index_sql = {}
         for app in get_apps():
-            all_indexes.append(u'\n'.join(sql_indexes(app,
-                                                      no_style())).encode('utf-8'))
+            all_indexes.append(u'\n'.join(sql_indexes(app, no_style()), connection).encode('utf-8'))
         #Sort out all the proposed indexes by table.
         for index in all_indexes:
             indice = index.split('\n')
