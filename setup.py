@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 
 PACKAGES = find_packages()
 INSTALL_REQUIRES = [
-    'Django',
+    'Django>=1.3',
 ]
 setup(
     name='django-debug-utils',
