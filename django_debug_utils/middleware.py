@@ -26,3 +26,14 @@ class UserBasedExceptionMiddleware(object):
         if request.user in users and request.user.is_superuser:
             return technical_500_response(request, *sys.exc_info())
         return None
+
+class SuperUserBasedExceptionMiddleware(object):
+    def process_exception(self, request, exception):
+        """Same as UserBasedExceptionMiddleware but works for all superusers but without
+        need of creating groups, having cache etc.
+        """
+        if DEBUG:
+            return None
+        if request.user.is_superuser:
+            return technical_500_response(request, *sys.exc_info())
+        return None
