@@ -5,12 +5,11 @@ from django.core.cache import cache
 from django.conf import settings
 
 DEBUG = getattr(settings, 'DEBUG', True)
-CACHE_BACKEND = getattr(settings, 'CACHE_BACKEND', 'dummy:///')
 
 class UserBasedExceptionMiddleware(object):
     def process_exception(self, request, exception):
         #Bail out if we're probably running locally, so we don't obfuscate errors
-        if DEBUG or CACHE_BACKEND == 'dummy:///':
+        if DEBUG:
             return None
         users = cache.get('technical_error_users')
         if not users:
