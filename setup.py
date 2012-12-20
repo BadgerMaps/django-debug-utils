@@ -7,7 +7,7 @@ INSTALL_REQUIRES = [
 ]
 setup(
     name='django-debug-utils',
-    version='0.0.1',
+    version='0.0.2',
     description='Little tools useful for debugging',
     author = "Eric Holscher",
     author_email = "eric@ericholscher.com",
